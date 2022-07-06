@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/Widgets/AppBar.dart';
 
+import 'Recover_Account_Code.dart';
+
 class RecoverAccount extends StatelessWidget {
   const RecoverAccount({Key? key}) : super(key: key);
 
@@ -13,7 +15,7 @@ class RecoverAccount extends StatelessWidget {
         appBar: buildAppBar('إسترداد الحساب'),
         body: SingleChildScrollView(
           child: Container(
-            color: Colors.grey[300],
+
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
               child: Container(
@@ -48,7 +50,10 @@ class RecoverAccount extends StatelessWidget {
                             color: Color(0xff48A9C5),
                             borderRadius: BorderRadius.circular(5)),
                         child: MaterialButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context,MaterialPageRoute(builder: (context)=>
+                              Recover_Account_code()));
+                            },
                             child: Text("التالي",
                                 style: TextStyle(
                                     fontSize: 18,

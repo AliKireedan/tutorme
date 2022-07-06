@@ -3,7 +3,9 @@ import 'package:graduation_project/pages/Acount_Page.dart';
 import 'package:graduation_project/pages/CategoryPage.dart';
 import 'package:graduation_project/pages/MainScreen.dart';
 import 'package:graduation_project/pages/MessagePage.dart';
+import 'package:graduation_project/pages/Password%20Change.dart';
 import 'package:graduation_project/pages/Recover_Account.dart';
+import 'package:graduation_project/pages/Recover_Account_Code.dart';
 import 'package:graduation_project/pages/RegisterPage.dart';
 import 'package:graduation_project/pages/loginScreen.dart';
 import 'package:graduation_project/pages/rulesPage.dart';
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: RecoverAccount(),
+      home: PassChangeScreen(),
     );
   }
 }

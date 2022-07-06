@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/pages/ChatScreen.dart';
+import 'package:graduation_project/pages/Recover_Account_Code.dart';
 
 import '../Widgets/AppBar.dart';
+import 'Recover_Account.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -99,7 +102,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Colors.redAccent,
                           borderRadius: BorderRadius.circular(5)),
                       child: MaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                           Navigator.push(context,MaterialPageRoute(builder: (context)=>
+                               RecoverAccount()));
+                          },
                           child: Text("استرجاع الحساب",
                               style: TextStyle(
                                   fontSize: 18,
