@@ -10,6 +10,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   bool _isObscure1 = true;
   bool _isObscure2 = true;
+  String userType = '';
   String dropdownValue = 'طرابلس';
 
   @override
@@ -19,6 +20,7 @@ class _RegisterPageState extends State<RegisterPage> {
       child: Scaffold(
           appBar: AppBar(
             title: Text('إنشاء حساب'),
+            backgroundColor: Color(0xff48A9C5),
             centerTitle: true,
           ),
           body: SingleChildScrollView(
@@ -97,7 +99,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     SizedBox(
                       height: 20,
                     ),
-
                     Container(
                         padding:
                             EdgeInsets.symmetric(horizontal: 10, vertical: 0),
@@ -118,7 +119,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                   },
                                   icon: Icon(Icons.remove_red_eye))),
                         )),
-                        
                     SizedBox(
                       height: 20,
                     ),
@@ -146,43 +146,97 @@ class _RegisterPageState extends State<RegisterPage> {
                       height: 20,
                     ),
                     Container(
-                      width: 300,
-                      child: DropdownButton<String>(
-
-                        value: dropdownValue,
-                        icon: const Icon(Icons.keyboard_arrow_down_rounded),
-                        elevation: 16,
-                            isExpanded: true,
-                        style: const TextStyle(color: Colors.deepPurple),
-
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownValue = newValue!;
-                          });
-                        },
-                        items: <String>[
-                          'طرابلس',
-                          'بنغازي',
-                          'الزاوية',
-                          'الجفرة',
-                          'الكفرة',
-                          'سرت',
-                          'زنتان',
-                          'الرحيبات',
-                          'جادو',
-                          'غريان',
-                          'العزيزية',
-                          'نالوت',
-                          'البيضاء',
-                          'الرجبان',
-                          'سبها'
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      child: Row(
+                        children: [
+                          Expanded(
+                              flex: 2,
+                              child:
+                                  Text('المدينة', textAlign: TextAlign.right)),
+                          Expanded(
+                            flex: 3,
+                            child: DropdownButton<String>(
+                              value: dropdownValue,
+                              icon:
+                                  const Icon(Icons.keyboard_arrow_down_rounded),
+                              elevation: 16,
+                              isExpanded: true,
+                              style: const TextStyle(color: Colors.deepPurple),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownValue = newValue!;
+                                });
+                              },
+                              items: <String>[
+                                'طرابلس',
+                                'بنغازي',
+                                'الزاوية',
+                                'الجفرة',
+                                'الكفرة',
+                                'سرت',
+                                'زنتان',
+                                'الرحيبات',
+                                'جادو',
+                                'غريان',
+                                'العزيزية',
+                                'نالوت',
+                                'البيضاء',
+                                'الرجبان',
+                                'سبها'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ],
                       ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                      child: Row(children: [
+                        Text('نوع المستخدم', textAlign: TextAlign.right),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Row(
+                          children: [
+                            Text('عميل'),
+                            Radio(
+                                value: 'Client',
+                                groupValue: userType,
+                                onChanged: (val) {
+                                  setState((){
+                                    userType = val.toString();
+                                    print(userType);
+                                  });
+                                })
+                          ],
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Row(
+                          children: [
+                            Text('مرشد'),
+                            Radio(
+                                value: 'tutor',
+                                groupValue: userType,
+                                onChanged: (val) {
+                                  setState((){
+                                    userType = val.toString();
+                                    print(userType);
+                                  });
+                                })
+                          ],
+                        ),
+                      ]),
                     ),
                     SizedBox(
                       height: 20,

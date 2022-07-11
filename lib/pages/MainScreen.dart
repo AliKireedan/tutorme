@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/pages/rulesPage.dart';
 
@@ -6,6 +7,7 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Container(
@@ -13,11 +15,26 @@ class MainScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 6, vertical: 20),
         child: Column(
           children: [
-            Text("إعلانات",
-                style: TextStyle(
-                    fontSize: 35,
-                    fontFamily: 'Tajwal',
-                    fontWeight: FontWeight.bold))
+            Text('الاعلانات المميزة',style: TextStyle(fontSize: 25),),
+            SizedBox(height: 20,),
+            CarouselSlider(
+              options: CarouselOptions(height: size.height *0.3,
+              autoPlay: true,pauseAutoPlayOnTouch: true),
+              items: [1,2,3,4,5].map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(
+                            color: Colors.amber
+                        ),
+                        child: Text('text $i', style: TextStyle(fontSize: 16.0),)
+                    );
+                  },
+                );
+              }).toList(),
+            )
           ],
         ),
       ),

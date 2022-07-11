@@ -14,7 +14,9 @@ class CategoryPage extends StatelessWidget {
               children: [
                 Container(
                   padding: const EdgeInsets.all(18),
-                  decoration: BoxDecoration(color: Colors.tealAccent),
+                  decoration:
+                  BoxDecoration(color: Colors.red ,borderRadius: BorderRadius.circular(10)),
+                  
                   child: Row(
                     children: [
                       Icon(
@@ -31,6 +33,184 @@ class CategoryPage extends StatelessWidget {
                               color: Colors.white)),
                     ],
                   ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(18),
+                  decoration:
+                  BoxDecoration(color: Colors.red ,borderRadius: BorderRadius.circular(10)),
+
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.account_balance_outlined,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 20),
+                      Text("تعليم اساسي",
+                          style: TextStyle(
+                              fontFamily: 'Tajwal',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              color: Colors.white)),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(18),
+                  decoration:
+                  BoxDecoration(color: Colors.red ,borderRadius: BorderRadius.circular(10)),
+
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.account_balance_outlined,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 20),
+                      Text("تعليم اساسي",
+                          style: TextStyle(
+                              fontFamily: 'Tajwal',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              color: Colors.white)),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(18),
+                  decoration:
+                  BoxDecoration(color: Colors.red ,borderRadius: BorderRadius.circular(10)),
+
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.account_balance_outlined,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 20),
+                      Text("تعليم اساسي",
+                          style: TextStyle(
+                              fontFamily: 'Tajwal',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              color: Colors.white)),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(18),
+                  decoration:
+                  BoxDecoration(color: Colors.red ,borderRadius: BorderRadius.circular(10)),
+
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.account_balance_outlined,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 20),
+                      Text("تعليم اساسي",
+                          style: TextStyle(
+                              fontFamily: 'Tajwal',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              color: Colors.white)),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(18),
+                  decoration:
+                  BoxDecoration(color: Colors.red ,borderRadius: BorderRadius.circular(10)),
+
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.account_balance_outlined,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 20),
+                      Text("تعليم اساسي",
+                          style: TextStyle(
+                              fontFamily: 'Tajwal',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              color: Colors.white)),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(18),
+                  decoration:
+                  BoxDecoration(color: Colors.red ,borderRadius: BorderRadius.circular(10)),
+
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.account_balance_outlined,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 20),
+                      Text("تعليم اساسي",
+                          style: TextStyle(
+                              fontFamily: 'Tajwal',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              color: Colors.white)),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(18),
+                  decoration:
+                  BoxDecoration(color: Colors.red ,borderRadius: BorderRadius.circular(10)),
+
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.account_balance_outlined,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 20),
+                      Text("تعليم اساسي",
+                          style: TextStyle(
+                              fontFamily: 'Tajwal',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              color: Colors.white)),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 SizedBox(
                   height: 20,

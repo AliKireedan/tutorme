@@ -41,7 +41,8 @@ class _PassChangeScreenState extends State<PassChangeScreen> {
                     ),
                     TextFormField(
                       obscureText: _isObscure,
-                      decoration: InputDecoration(
+                      decoration: InputDecoration(filled: true,
+                          fillColor: Colors.grey[100],
                           border: InputBorder.none,
                           hintText: ' كلمة المرور الجديدة',
                           suffixIcon: IconButton(
@@ -58,6 +59,8 @@ class _PassChangeScreenState extends State<PassChangeScreen> {
                     TextFormField(
                       obscureText: _isObscure2,
                       decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey[100],
                           border: InputBorder.none,
                           hintText: 'تأكيد كلمة المرور',
                           suffixIcon: IconButton(

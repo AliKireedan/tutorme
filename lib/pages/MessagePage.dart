@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:graduation_project/pages/ChatScreen.dart';
 
@@ -33,8 +34,8 @@ class _MessagesPageState extends State<MessagesPage> {
                       flex: 2,
                       child: CircleAvatar(
                         backgroundColor: Colors.blue,
-                        backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/512/149/149071.png'),
+                        backgroundImage: AssetImage(
+                            'Images/user.png'),
                       ),
                     ),
                   ),
@@ -89,8 +90,8 @@ class _MessagesPageState extends State<MessagesPage> {
                       flex: 2,
                       child: CircleAvatar(
                         backgroundColor: Colors.blue,
-                        backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/512/149/149071.png'),
+                        backgroundImage: AssetImage(
+                            'Images/user.png'),
                       ),
                     ),
                   ),
@@ -145,8 +146,8 @@ class _MessagesPageState extends State<MessagesPage> {
                       flex: 2,
                       child: CircleAvatar(
                         backgroundColor: Colors.blue,
-                        backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/512/149/149071.png'),
+                        backgroundImage: AssetImage(
+                            'Images/user.png'),
                       ),
                     ),
                   ),
@@ -201,8 +202,8 @@ class _MessagesPageState extends State<MessagesPage> {
                       flex: 2,
                       child: CircleAvatar(
                         backgroundColor: Colors.blue,
-                        backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/512/149/149071.png'),
+                        backgroundImage: AssetImage(
+                            'Images/user.png'),
                       ),
                     ),
                   ),
@@ -257,8 +258,8 @@ class _MessagesPageState extends State<MessagesPage> {
                       flex: 2,
                       child: CircleAvatar(
                         backgroundColor: Colors.blue,
-                        backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/512/149/149071.png'),
+                        backgroundImage: AssetImage(
+                            'Images/user.png'),
                       ),
                     ),
                   ),
@@ -313,8 +314,288 @@ class _MessagesPageState extends State<MessagesPage> {
                       flex: 2,
                       child: CircleAvatar(
                         backgroundColor: Colors.blue,
-                        backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/512/149/149071.png'),
+                        backgroundImage: AssetImage(
+                            'Images/user.png'),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Expanded(
+                    flex: 8,
+                    child: Container(
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'مستخد نظام ',
+                            textAlign: TextAlign.right,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'رسالة مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام ',
+                            textAlign: TextAlign.right,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChatScreen()),
+                );
+              },
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    width: 50,
+                    height: 50,
+                    child: Expanded(
+                      flex: 2,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.blue,
+                        backgroundImage: AssetImage(
+                            'Images/user.png'),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Expanded(
+                    flex: 8,
+                    child: Container(
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'مستخد نظام ',
+                            textAlign: TextAlign.right,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'رسالة مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام ',
+                            textAlign: TextAlign.right,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChatScreen()),
+                );
+              },
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    width: 50,
+                    height: 50,
+                    child: Expanded(
+                      flex: 2,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.blue,
+                        backgroundImage: AssetImage(
+                            'Images/user.png'),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Expanded(
+                    flex: 8,
+                    child: Container(
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'مستخد نظام ',
+                            textAlign: TextAlign.right,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'رسالة مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام ',
+                            textAlign: TextAlign.right,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChatScreen()),
+                );
+              },
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    width: 50,
+                    height: 50,
+                    child: Expanded(
+                      flex: 2,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.blue,
+                        backgroundImage: AssetImage(
+                            'Images/user.png'),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Expanded(
+                    flex: 8,
+                    child: Container(
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'مستخد نظام ',
+                            textAlign: TextAlign.right,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'رسالة مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام ',
+                            textAlign: TextAlign.right,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChatScreen()),
+                );
+              },
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    width: 50,
+                    height: 50,
+                    child: Expanded(
+                      flex: 2,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.blue,
+                        backgroundImage: AssetImage(
+                            'Images/user.png'),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Expanded(
+                    flex: 8,
+                    child: Container(
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'مستخد نظام ',
+                            textAlign: TextAlign.right,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'رسالة مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام مستخد نظام ',
+                            textAlign: TextAlign.right,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChatScreen()),
+                );
+              },
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    width: 50,
+                    height: 50,
+                    child: Expanded(
+                      flex: 2,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.blue,
+                        backgroundImage: AssetImage(
+                            'Images/user.png'),
                       ),
                     ),
                   ),
