@@ -20,16 +20,21 @@ class MainScreen extends StatelessWidget {
             CarouselSlider(
               options: CarouselOptions(height: size.height *0.3,
               autoPlay: true,pauseAutoPlayOnTouch: true),
+
               items: [1,2,3,4,5].map((i) {
                 return Builder(
                   builder: (BuildContext context) {
                     return Container(
                         width: MediaQuery.of(context).size.width,
                         margin: EdgeInsets.symmetric(horizontal: 5.0),
+
                         decoration: BoxDecoration(
                             color: Colors.amber
                         ),
-                        child: Text('text $i', style: TextStyle(fontSize: 16.0),)
+                        child:
+                    Stack(children: [
+
+                    ],)
                     );
                   },
                 );

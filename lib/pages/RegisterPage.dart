@@ -10,6 +10,11 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   bool _isObscure1 = true;
   bool _isObscure2 = true;
+  var firstName = TextEditingController();
+  var lastName = TextEditingController();
+  var phoneNumber = TextEditingController();
+  var pass = TextEditingController();
+  var pass2 = TextEditingController();
   String userType = '';
   String dropdownValue = 'طرابلس';
 
@@ -54,7 +59,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                     color: Colors.grey[200],
                                     border: Border.all(color: Colors.white),
                                     borderRadius: BorderRadius.circular(12)),
-                                child: TextField(
+                                child: TextFormField(controller: firstName,
+                                  validator: (value){
+                                 
+                                  },
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: 'الاسم'),
@@ -72,7 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     color: Colors.grey[200],
                                     border: Border.all(color: Colors.white),
                                     borderRadius: BorderRadius.circular(12)),
-                                child: TextField(
+                                child: TextFormField(controller: lastName,
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: 'اللقب'),
@@ -91,7 +99,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             color: Colors.grey[200],
                             border: Border.all(color: Colors.white),
                             borderRadius: BorderRadius.circular(12)),
-                        child: TextField(
+                        child: TextFormField(controller: phoneNumber,
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                               border: InputBorder.none, hintText: 'رقم الهاتف'),
@@ -106,7 +114,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             color: Colors.grey[200],
                             border: Border.all(color: Colors.white),
                             borderRadius: BorderRadius.circular(12)),
-                        child: TextField(
+                        child: TextFormField(
+                          controller: pass,
                           obscureText: _isObscure1,
                           decoration: InputDecoration(
                               border: InputBorder.none,
@@ -129,8 +138,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             color: Colors.grey[200],
                             border: Border.all(color: Colors.white),
                             borderRadius: BorderRadius.circular(12)),
-                        child: TextField(
+                        child: TextFormField(
                           obscureText: _isObscure2,
+                          controller: pass2,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'تأكيد كلمة المرور',
@@ -249,7 +259,13 @@ class _RegisterPageState extends State<RegisterPage> {
                               Border.all(color: Color(0xff48A9C5), width: 2),
                           borderRadius: BorderRadius.circular(5)),
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          print(userType);
+                          print(firstName);
+                          print(lastName);
+                          print(pass);
+                          print(pass2);
+                        },
                         child: Text(
                           'إنشاء الحساب',
                           style:
