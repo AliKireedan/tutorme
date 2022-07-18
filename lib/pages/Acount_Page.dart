@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/Widgets/ButtonBorder.dart';
 import 'package:graduation_project/defaults.dart';
 import 'package:graduation_project/pages/RegisterPage.dart';
+import 'package:graduation_project/pages/SplashScreen.dart';
 import 'package:graduation_project/pages/loginScreen.dart';
 
 class AccountPage extends StatelessWidget {
@@ -35,14 +37,17 @@ class AccountPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(5)),
                         child: MaterialButton(
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) => LoginScreen()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginScreen()));
                             },
                             child: Text("تسجيل الدخول",
                                 style: TextStyle(
                                     fontSize: 18,
                                     color: Color(HexColor('#48A9C5')),
                                     fontFamily: 'Arial Hebrew')))),
+
                     SizedBox(
                       height: 20,
                     ),
@@ -51,13 +56,14 @@ class AccountPage extends StatelessWidget {
                         padding:
                         EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                         decoration: BoxDecoration(
-                          color: Color(HexColor('#48A9C5')),
-
+                            color: Color(HexColor('#48A9C5')),
                             borderRadius: BorderRadius.circular(5)),
                         child: MaterialButton(
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) => RegisterPage()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SplashScreen()));
                             },
                             child: Text("إنشاء الحساب",
                                 style: TextStyle(

@@ -59,7 +59,8 @@ class _HomePageState extends State<HomePage> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: buildAppBar(pageTitle[indexClicked]),
-        body: pages[indexClicked] //pages[indexClicked]
+        body:
+        pages[indexClicked] //pages[indexClicked]
         ,
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: indexClicked,
