@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/pages/ChatScreen.dart';
 import 'package:graduation_project/pages/Recover_Account_Code.dart';
 
+
+
 import '../Widgets/AppBar.dart';
 import 'Recover_Account.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreenState();
+}
+
+void firebaseAuthenticate() {
+  //connect with firebase
 }
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -47,8 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             prefixIcon: Icon(Icons.phone),
                             border: InputBorder.none,
                             hintText: 'رقم الهاتف'),
-                      )
-                  ),
+                      )),
                   SizedBox(
                     height: 20,
                   ),
@@ -85,7 +90,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Color(0xff48A9C5),
                           borderRadius: BorderRadius.circular(5)),
                       child: MaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            firebaseAuthenticate();
+                          },
                           child: Text("تسجيل الدخول",
                               style: TextStyle(
                                   fontSize: 18,
@@ -103,8 +110,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(5)),
                       child: MaterialButton(
                           onPressed: () {
-                           Navigator.push(context,MaterialPageRoute(builder: (context)=>
-                               RecoverAccount()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => RecoverAccount()));
                           },
                           child: Text("استرجاع الحساب",
                               style: TextStyle(
