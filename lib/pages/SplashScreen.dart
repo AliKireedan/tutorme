@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/defaults.dart';
+import 'package:graduation_project/pages/RegisterPage.dart';
+
 class SplashScreen extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -67,7 +67,12 @@ class SplashScreen extends StatelessWidget {
                           ),
                           borderRadius: BorderRadius.circular(5)),
                       child: MaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => RegisterPage()));
+                          },
                           child: Text("متابعة",
                               style: TextStyle(
                                   fontSize: 18,

@@ -1,4 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation_project/Widgets/errorOccurredDialog.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -12,14 +17,79 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _isObscure2 = true;
   var firstName = TextEditingController();
   var lastName = TextEditingController();
-  var phoneNumber = TextEditingController();
-  var pass = TextEditingController();
-  var pass2 = TextEditingController();
-  String userType = '';
+  var email = TextEditingController();
+  var password = TextEditingController();
+  var confirmPassword = TextEditingController();
+  var phone_number = TextEditingController();
+  String userType = 'client';
   String dropdownValue = 'طرابلس';
+  var user = {
+    "address": "",
+    "created_at": "",
+    "firstname": "",
+    "lastname": "",
+    "id": "",
+    "iaActive": "",
+    "isVIP": "",
+    "phone_number": "",
+    "skills": "",
+  };
+  registerUser(usersCollection) async {
+    try {
+      // Attempt to sign in the user in with Google
+      var userCredentials = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: email.text, password: password.text);
+      // debugPrint('testing worked ${mailer.user.ui}');
+      var userObject = {
+        "id": userCredentials.user!.uid,
+        "firstname": firstName.text,
+        "lastname": lastName.text,
+        "address": dropdownValue,
+        "email": email.text,
+        "created_at": DateTime.now().millisecondsSinceEpoch,
+        "iaActive": true,
+        "isVIP": false,
+        "phone_number": '+218${phone_number.text}',
+        "skills": "",
+      };
+      if (userType == 'client') {
+        userObject.remove('isVIP');
+        userObject.remove('skills');
+      }
+      //inserting into firebase FIRESTORE the user data that was inserted
+      var firestoreUser = await usersCollection.add(userObject);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return errorOccurredDialog(
+                  text: 'حدث خطأ في تسجيل الحساب',
+                  content:
+                      'البريد الإلكتروني هذا مسجل بالفعل، يرجى إستخدام حساب آخر.');
+            });
+      }
+      if (e.code == 'account-exists-with-different-credential') {
+        // The account already exists with a different credential
+        String? email = e.email;
+        AuthCredential? pendingCredential = e.credential;
+
+        showDialog(
+            context: context,
+            builder: (context) {
+              return errorOccurredDialog(
+                  text: 'حدث خطأ', content: 'خطأ : ${e.code}');
+            });
+      }
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
+    CollectionReference usersCollection =
+        FirebaseFirestore.instance.collection('users');
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -56,13 +126,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
                                 decoration: BoxDecoration(
-                                    color: Colors.grey[200],
-                                    border: Border.all(color: Colors.white),
+                                    color: Colors.white,
+                                    border:
+                                        Border.all(color: Color(0xff48A9C5)),
                                     borderRadius: BorderRadius.circular(12)),
-                                child: TextFormField(controller: firstName,
-                                  validator: (value){
-                                 
-                                  },
+                                child: TextFormField(
+                                  controller: firstName,
+                                  validator: (value) {},
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: 'الاسم'),
@@ -77,10 +147,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 0),
                                 decoration: BoxDecoration(
-                                    color: Colors.grey[200],
-                                    border: Border.all(color: Colors.white),
+                                    color: Colors.white,
+                                    border:
+                                        Border.all(color: Color(0xff48A9C5)),
                                     borderRadius: BorderRadius.circular(12)),
-                                child: TextFormField(controller: lastName,
+                                child: TextFormField(
+                                  controller: lastName,
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: 'اللقب'),
@@ -96,13 +168,61 @@ class _RegisterPageState extends State<RegisterPage> {
                         padding:
                             EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                         decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            border: Border.all(color: Colors.white),
+                            color: Colors.white,
+                            border: Border.all(color: Color(0xff48A9C5)),
                             borderRadius: BorderRadius.circular(12)),
-                        child: TextFormField(controller: phoneNumber,
-                          keyboardType: TextInputType.phone,
-                          decoration: InputDecoration(
-                              border: InputBorder.none, hintText: 'رقم الهاتف'),
+                        child: Form(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            child: TextFormField(
+                              controller: email,
+                              validator: (email) {
+                                if (email != null &&
+                                    !EmailValidator.validate(email)) {
+                                  return 'يرجى إدخال بريد إلكتروني صحيح';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                  icon: Icon(Icons.email),
+                                  border: InputBorder.none,
+                                  hintText: 'البريد الإلكتروني'),
+                            ))),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: Color(0xff48A9C5)),
+                            borderRadius: BorderRadius.circular(12)),
+                        child: Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Form(
+                              autovalidateMode:
+                                  AutovalidateMode.onUserInteraction,
+                              child: TextFormField(
+                                textAlign: TextAlign.right,
+                                controller: phone_number,
+                                validator: (phone_number) {
+                                  if (phone_number != null &&
+                                      phone_number.length <= 8) {
+                                    return 'يجب أن يكون رقم الهاتف صحيحًا.';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                    icon: Icon(Icons.phone_android),
+                                    prefixText: '+218',
+                                    border: InputBorder.none,
+                                    hintText: 'رقم الهاتف'),
+                              )),
                         )),
                     SizedBox(
                       height: 20,
@@ -111,22 +231,34 @@ class _RegisterPageState extends State<RegisterPage> {
                         padding:
                             EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                         decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            border: Border.all(color: Colors.white),
+                            color: Colors.white,
+                            border: Border.all(color: Color(0xff48A9C5)),
                             borderRadius: BorderRadius.circular(12)),
-                        child: TextFormField(
-                          controller: pass,
-                          obscureText: _isObscure1,
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'كلمة المرور',
-                              suffixIcon: IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      _isObscure1 = !_isObscure1;
-                                    });
-                                  },
-                                  icon: Icon(Icons.remove_red_eye))),
+                        child: Form(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          child: TextFormField(
+                            controller: password,
+                            textDirection: TextDirection.ltr,
+                            validator: (value) {
+                              if (value != null && value.length <= 7) {
+                                return 'يجب أن لا تقل كلمة المرور عن ثمانية حروف أو أرقام';
+                              } else {
+                                return null;
+                              }
+                            },
+                            obscureText: _isObscure1,
+                            decoration: InputDecoration(
+                                icon: Icon(Icons.password),
+                                border: InputBorder.none,
+                                hintText: 'كلمة المرور',
+                                suffixIcon: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        _isObscure1 = !_isObscure1;
+                                      });
+                                    },
+                                    icon: Icon(Icons.remove_red_eye))),
+                          ),
                         )),
                     SizedBox(
                       height: 20,
@@ -135,22 +267,34 @@ class _RegisterPageState extends State<RegisterPage> {
                         padding:
                             EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                         decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            border: Border.all(color: Colors.white),
+                            color: Colors.white,
+                            border: Border.all(color: Color(0xff48A9C5)),
                             borderRadius: BorderRadius.circular(12)),
-                        child: TextFormField(
-                          obscureText: _isObscure2,
-                          controller: pass2,
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'تأكيد كلمة المرور',
-                              suffixIcon: IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      _isObscure2 = !_isObscure2;
-                                    });
-                                  },
-                                  icon: Icon(Icons.remove_red_eye))),
+                        child: Form(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          child: TextFormField(
+                            obscureText: _isObscure2,
+                            textDirection: TextDirection.ltr,
+                            controller: confirmPassword,
+                            validator: (value) {
+                              if (value != null && value != password.text) {
+                                return 'يجب أن تكون كلمة المرور متطابقة';
+                              } else {
+                                return null;
+                              }
+                            },
+                            decoration: InputDecoration(
+                                icon: Icon(Icons.password),
+                                border: InputBorder.none,
+                                hintText: 'تأكيد كلمة المرور',
+                                suffixIcon: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        _isObscure2 = !_isObscure2;
+                                      });
+                                    },
+                                    icon: Icon(Icons.remove_red_eye))),
+                          ),
                         )),
                     SizedBox(
                       height: 20,
@@ -196,7 +340,10 @@ class _RegisterPageState extends State<RegisterPage> {
                               ].map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
-                                  child: Text(value),
+                                  child: Text(
+                                    value,
+                                    textAlign: TextAlign.right,
+                                  ),
                                 );
                               }).toList(),
                             ),
@@ -219,12 +366,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           children: [
                             Text('عميل'),
                             Radio(
-                                value: 'Client',
+                                value: 'client',
                                 groupValue: userType,
                                 onChanged: (val) {
-                                  setState((){
+                                  setState(() {
                                     userType = val.toString();
-                                    print(userType);
                                   });
                                 })
                           ],
@@ -239,9 +385,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                 value: 'tutor',
                                 groupValue: userType,
                                 onChanged: (val) {
-                                  setState((){
+                                  setState(() {
                                     userType = val.toString();
-                                    print(userType);
                                   });
                                 })
                           ],
@@ -259,12 +404,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               Border.all(color: Color(0xff48A9C5), width: 2),
                           borderRadius: BorderRadius.circular(5)),
                       child: MaterialButton(
-                        onPressed: () {
-                          print(userType);
-                          print(firstName);
-                          print(lastName);
-                          print(pass);
-                          print(pass2);
+                        onPressed: () async {
+                          await registerUser(usersCollection);
                         },
                         child: Text(
                           'إنشاء الحساب',

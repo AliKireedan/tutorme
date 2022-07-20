@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/pages/ChatScreen.dart';
 import 'package:graduation_project/pages/Recover_Account_Code.dart';
 
-
-
 import '../Widgets/AppBar.dart';
+import 'OTPScreen.dart';
 import 'Recover_Account.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,6 +17,9 @@ void firebaseAuthenticate() {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _isObscure2 = false;
+  var _controller = TextEditingController();
+  String email = "";
+  String password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           border: Border.all(color: Colors.white),
                           borderRadius: BorderRadius.circular(12)),
                       child: TextFormField(
+                        controller: _controller,
                         keyboardType: TextInputType.phone,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.phone),
@@ -91,7 +94,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(5)),
                       child: MaterialButton(
                           onPressed: () {
+                            setState(() {
+                              email = _controller.text;
+                            });
                             firebaseAuthenticate();
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    OTPScreen(phone: email)));
                           },
                           child: Text("تسجيل الدخول",
                               style: TextStyle(
