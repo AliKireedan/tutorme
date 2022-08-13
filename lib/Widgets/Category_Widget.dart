@@ -49,7 +49,6 @@ class CategoryWidget extends StatelessWidget {
             SizedBox(width: 40),
             Text(this.text,
                 style: TextStyle(
-                    fontFamily: 'Roboto',
                     fontWeight: FontWeight.bold,
                     fontSize: this.textSize,
                     color: Colors.white)),

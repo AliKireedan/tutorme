@@ -13,7 +13,6 @@ class CategoryPage extends StatelessWidget {
           child: Expanded(
             child: Column(
               children: [
-
                 CategoryWidget(
                   icon: Icons.account_balance_outlined,
                   text: 'تعليم اساسي',

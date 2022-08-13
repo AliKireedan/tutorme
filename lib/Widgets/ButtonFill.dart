@@ -32,7 +32,6 @@ class ButtonFill extends StatelessWidget {
             child: Text("${this.text}",
                 style: TextStyle(
                     fontSize: this.fontSize,
-                    color: Color(HexColor(this.textColor)),
-                    fontFamily: 'Roboto'))));
+                    color: Color(HexColor(this.textColor)),))));
   }
 }

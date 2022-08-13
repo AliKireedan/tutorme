@@ -18,7 +18,6 @@ class PrimaryText extends StatelessWidget {
       this.text,
       style: TextStyle(
           fontWeight: FontWeight.bold,
-          fontFamily: 'Roboto',
           fontSize: size ),
     );
   }

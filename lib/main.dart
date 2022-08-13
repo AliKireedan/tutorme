@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/pages/Acount_Page.dart';
 import 'package:graduation_project/pages/CategoryPage.dart';
@@ -9,6 +10,10 @@ import 'package:graduation_project/pages/Recover_Account_Code.dart';
 import 'package:graduation_project/pages/RegisterPage.dart';
 import 'package:graduation_project/pages/loginScreen.dart';
 import 'package:graduation_project/pages/rulesPage.dart';
+import 'package:graduation_project/providers/userStateProvider.dart';
+import 'package:graduation_project/services/auth.dart';
+import 'package:graduation_project/wrapper.dart';
+import 'package:provider/provider.dart';
 
 import 'Widgets/AppBar.dart';
 import 'pages/ChatScreen.dart';
@@ -25,18 +30,33 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  runApp(MyApp());
+  runApp(MultiProvider(
+    providers: [ChangeNotifierProvider(create: (_) => UserState())],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
-      home: HomePage(),
+    return MultiProvider(
+      providers: [
+        Provider<AuthService>(
+          create: (_) => AuthService(),
+        )
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(fontFamily: 'Cairo'),
+        // home: HomePage(),
+        home: Wrapper(),
+        routes: {
+          '/home': ((context) => HomePage()),
+          '/login': ((context) => LoginScreen()),
+          '/rules': ((context) => RulesPage()),
+        },
+      ),
     );
   }
 }
@@ -59,8 +79,7 @@ class _HomePageState extends State<HomePage> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: buildAppBar(pageTitle[indexClicked]),
-        body:
-        pages[indexClicked] //pages[indexClicked]
+        body: pages[indexClicked] //pages[indexClicked]
         ,
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: indexClicked,

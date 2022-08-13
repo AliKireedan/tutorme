@@ -57,7 +57,6 @@ class _PostWidgetState extends State<PostWidget> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 23,
-                                fontFamily: 'Roboto',
                                 color: Colors.black),
                           ),
                         ),
@@ -110,7 +109,6 @@ class _PostWidgetState extends State<PostWidget> {
                         ),
                         Text(this.widget.userName,textAlign: TextAlign.center,maxLines: 2,overflow: TextOverflow.ellipsis,  style: TextStyle(
                             fontSize: 14,
-                            fontFamily: 'Roboto',
                             color: Colors.black),)
                       ],
                     ),

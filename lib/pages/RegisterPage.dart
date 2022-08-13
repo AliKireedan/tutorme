@@ -4,6 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/Widgets/errorOccurredDialog.dart';
+import 'package:graduation_project/Widgets/successDialog.dart';
+import 'package:graduation_project/pages/loginScreen.dart';
+import 'package:graduation_project/providers/userStateProvider.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -33,9 +37,11 @@ class _RegisterPageState extends State<RegisterPage> {
     "isVIP": "",
     "phone_number": "",
     "skills": "",
+    "type": ""
   };
   registerUser(usersCollection) async {
     try {
+      final auth = FirebaseAuth.instance;
       // Attempt to sign in the user in with Google
       var userCredentials = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
@@ -48,17 +54,44 @@ class _RegisterPageState extends State<RegisterPage> {
         "address": dropdownValue,
         "email": email.text,
         "created_at": DateTime.now().millisecondsSinceEpoch,
-        "iaActive": true,
+        "isActive": true,
         "isVIP": false,
         "phone_number": '+218${phone_number.text}',
         "skills": "",
+        "type": userType
       };
+
       if (userType == 'client') {
         userObject.remove('isVIP');
         userObject.remove('skills');
       }
       //inserting into firebase FIRESTORE the user data that was inserted
-      var firestoreUser = await usersCollection.add(userObject);
+
+      var firestoreUser = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(auth.currentUser?.uid)
+          .set(userObject);
+      await auth.currentUser
+          ?.updateDisplayName("${firstName.text} ${lastName.text}");
+
+      //update photo
+      await auth.currentUser?.updatePhotoURL('https://picsum.photos/200');
+
+      context.read<UserState>().setUser(auth.currentUser);
+      context.read<UserState>().setUserInfoRegistered(userObject);
+
+      showDialog(
+          context: context,
+          builder: (context) {
+            return successDialog(
+              text: 'تم التسجيل بنجاح',
+              content: 'قم بالتأكيد للتوجه للصفحة الرئيسية ',
+              navigateTo: '/home',
+            );
+          });
+
+      // Navigator.push(
+      //     context, MaterialPageRoute(builder: (context) => LoginScreen()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         showDialog(
@@ -83,7 +116,6 @@ class _RegisterPageState extends State<RegisterPage> {
             });
       }
     }
-
   }
 
   @override
@@ -94,7 +126,10 @@ class _RegisterPageState extends State<RegisterPage> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
           appBar: AppBar(
-            title: Text('إنشاء حساب'),
+            title: Text(
+              'إنشاء حساب',
+              style: TextStyle(fontFamily: 'Cairo'),
+            ),
             backgroundColor: Color(0xff48A9C5),
             centerTitle: true,
           ),
@@ -132,7 +167,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                     borderRadius: BorderRadius.circular(12)),
                                 child: TextFormField(
                                   controller: firstName,
-                                  validator: (value) {},
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: 'الاسم'),

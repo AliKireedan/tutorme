@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/defaults.dart';
 import 'package:graduation_project/pages/RegisterPage.dart';
+import 'package:provider/provider.dart';
+import 'package:graduation_project/providers/userStateProvider.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
@@ -31,7 +33,6 @@ class SplashScreen extends StatelessWidget {
                     'تواصل مع معلمك الخاص في اي وقت',
                     style: TextStyle(
                       fontSize: 18,
-                      fontFamily: 'Roboto',
                       fontWeight: FontWeight.bold,
                       color: Color(HexColor('#48A9C5')),
                     ),
@@ -47,12 +48,13 @@ class SplashScreen extends StatelessWidget {
                           color: Color(HexColor('#48A9C5')),
                           borderRadius: BorderRadius.circular(5)),
                       child: MaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/rules');
+                          },
                           child: Text("شروط الاستخدام",
                               style: TextStyle(
                                   fontSize: 18,
-                                  color: Colors.white,
-                                  fontFamily: 'Arial Hebrew')))),
+                                  color: Colors.white,)))),
                   SizedBox(
                     height: 20,
                   ),
@@ -76,8 +78,7 @@ class SplashScreen extends StatelessWidget {
                           child: Text("متابعة",
                               style: TextStyle(
                                   fontSize: 18,
-                                  color: Color(HexColor('#48A9C5')),
-                                  fontFamily: 'Arial Hebrew')))),
+                                  color: Color(HexColor('#48A9C5')),)))),
                   SizedBox(
                     height: 20,
                   ),
