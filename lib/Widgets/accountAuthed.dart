@@ -106,7 +106,7 @@ class _accountAuthedState extends State<accountAuthed> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SecondaryHeaderProfile(
-                        title: context.watch<UserState>().email),
+                        title: context.watch<UserState>().userEntity['email']),
                   )
                 ]),
               ),
@@ -132,7 +132,7 @@ class _accountAuthedState extends State<accountAuthed> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SecondaryHeaderProfile(
-                        title: context.watch<UserState>().address),
+                        title: context.watch<UserState>().userEntity['address']),
                   )
                 ]),
               ),

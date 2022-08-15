@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,25 @@ class _LoginScreenState extends State<LoginScreen> {
     print('current user ${auth.currentUser}');
   }
 
+  Future initAuthentication(AuthService authService) async {
+    var user = await authService.signInUser(email.text, password.text);
+
+    context.read<UserState>().setUser(auth.currentUser);
+    var firestoreUserData = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(auth.currentUser?.uid)
+        .get()
+        .then(
+      (DocumentSnapshot doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        context.read<UserState>().setUserInfoRegistered(data);
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+
+    Navigator.pushNamed(context, '/home');
+  }
+
   Future reloadFirebaseUser() async {
     //login with firebase!!!
     await auth.currentUser?.reload();
@@ -42,7 +62,14 @@ class _LoginScreenState extends State<LoginScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        appBar: buildAppBar('تسجيل الدخول'),
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pushNamed(context, '/home'),
+          ),
+          title: Text("تسجيل الدخول"),
+          centerTitle: true,
+        ),
         body: Padding(
           padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
           child: SingleChildScrollView(
@@ -71,7 +98,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: email,
                           validator: (email) {
                             if (email != null &&
-                                !EmailValidator.validate(email)) {
+                                !EmailValidator.validate(email) &&
+                                email.length > 0) {
                               return 'يرجى إدخال بريد إلكتروني صحيح';
                             } else {
                               return null;
@@ -100,7 +128,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           obscureText: _isObscure2,
                           controller: password,
                           validator: (value) {
-                            if (value != null && value.length <= 7) {
+                            if (value != null &&
+                                value.length <= 7 &&
+                                value.length > 0) {
                               return 'يجب أن لا تقل كلمة المرور عن ثمانية حروف أو أرقام';
                             } else {
                               return null;
@@ -132,17 +162,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(5)),
                       child: MaterialButton(
                           onPressed: () {
-                            if (firebaseAuthenticate().toString().isNotEmpty ==
-                                true) {
-                              //set the state
-                              reloadFirebaseUser();
-                              context
-                                  .read<UserState>()
-                                  .setUser(auth.currentUser);
-                              Navigator.pushNamed(context, '/home');
-                            } else {
-                              // do nothing here
-                            }
+                            initAuthentication(authService);
+                            // if (firebaseAuthenticate().toString().isNotEmpty ==
+                            //     true) {
+                            //   //set the state
+                            //   reloadFirebaseUser();
+                            //   context
+                            //       .read<UserState>()
+                            //       .setUser(auth.currentUser);
+                            //   Navigator.pushNamed(context, '/home');
+                            // } else {
+                            //   // do nothing here
+                            // }
                           },
                           child: Text("تسجيل الدخول",
                               style: TextStyle(

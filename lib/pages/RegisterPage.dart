@@ -66,7 +66,6 @@ class _RegisterPageState extends State<RegisterPage> {
         userObject.remove('skills');
       }
       //inserting into firebase FIRESTORE the user data that was inserted
-
       var firestoreUser = await FirebaseFirestore.instance
           .collection('users')
           .doc(auth.currentUser?.uid)
@@ -77,8 +76,19 @@ class _RegisterPageState extends State<RegisterPage> {
       //update photo
       await auth.currentUser?.updatePhotoURL('https://picsum.photos/200');
 
+      var firestoreUserData = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(auth.currentUser?.uid)
+          .get()
+          .then(
+        (DocumentSnapshot doc) {
+          final data = doc.data() as Map<String, dynamic>;
+      context.read<UserState>().setUserInfoRegistered(data);
+        },
+        onError: (e) => print("Error getting document: $e"),
+      );
+
       context.read<UserState>().setUser(auth.currentUser);
-      context.read<UserState>().setUserInfoRegistered(userObject);
 
       showDialog(
           context: context,
