@@ -32,11 +32,6 @@ class _CategoryPageState extends State<CategoryPage> {
     }));
   }
 
-  void initState() {
-    super.initState();
-    getDocIds();
-  }
-
   // ···
   @override
   Widget build(BuildContext context) {
@@ -54,16 +49,21 @@ class _CategoryPageState extends State<CategoryPage> {
             }
             return ListView(
               children: snapshot.data!.docs.map((document) {
-                return Center(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 1.2,
-                    height: MediaQuery.of(context).size.width / 4,
-                    child: CategoryWidget(
-                      icon: Icons.menu_book,
-                      text: document['title'],
-                      startColor: 'f48A9C5',
-                      endColor: '48C9D7',
-                      sizedBoxHeight: 10,
+                return ListTile(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/category/courses');
+                  },
+                  title: Center(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      height: MediaQuery.of(context).size.width / 4,
+                      child: CategoryWidget(
+                        icon: Icons.menu_book,
+                        text: document['title'],
+                        startColor: 'f48A9C5',
+                        endColor: '48C9D7',
+                        sizedBoxHeight: 10,
+                      ),
                     ),
                   ),
                 );

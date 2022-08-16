@@ -6,14 +6,14 @@ class PostWidget extends StatefulWidget {
   String titleText;
   String userImage;
   String userName;
-    final VoidCallback onPress;
+  final VoidCallback onPress;
 
   DateTime timeOfCourse;
   List<String> tags;
 
   PostWidget(
       {Key? key,
-        required this.onPress,
+      required this.onPress,
       required this.userImage,
       required this.userName,
       required this.titleText,
@@ -40,117 +40,131 @@ class _PostWidgetState extends State<PostWidget> {
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Column(
-          children: [
-            Container(
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          child: Text(
-                            this.widget.titleText,maxLines: 2,overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 23,
-                                color: Colors.black),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children:
-                                List.generate(widget.tags.length, (index) {
-                              return Container(
-                                padding: EdgeInsets.all(8),
-                                margin: EdgeInsets.only(left: 15),
-                                decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.circular(50)),
+        child: Container(
+          padding: EdgeInsets.only(right: 30),
+          margin: EdgeInsets.only(top: 10, bottom: 10),
+          decoration: BoxDecoration(
+              border: Border(right: BorderSide(width: 2, color: Color(0xff48A9C5)))),
+          child: Column(
+            children: [
+              Container(
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                width: MediaQuery.of(context).size.width,
                                 child: Text(
-                                  widget.tags[index],
+                                  this.widget.titleText,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.right,
                                   style: TextStyle(
-                                      fontSize: 12, color: Colors.white),
-                                  textAlign: TextAlign.center,
+                                      fontSize: 23, color: Colors.black),
                                 ),
-                              );
-                            }),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  Row(children: [
+                                    CircleAvatar(
+                                      backgroundImage:
+                                          AssetImage(this.widget.userImage),
+                                      backgroundColor: Colors.white,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      this.widget.userName,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontSize: 14, color: Colors.black),
+                                    )
+                                  ]),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: List.generate(widget.tags.length,
+                                      (index) {
+                                    return Container(
+                                      padding: EdgeInsets.all(8),
+                                      margin: EdgeInsets.only(left: 15),
+                                      decoration: BoxDecoration(
+                                          color: Color(0xff48A9C5),
+                                          borderRadius:
+                                              BorderRadius.circular(50)),
+                                      child: Text(
+                                        widget.tags[index],
+                                        style: TextStyle(
+                                            fontSize: 12, color: Colors.white),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    );
+                                  }),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-
                       ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          width: 75,
-                          height: 75,
-                          child: CircleAvatar(
-                            backgroundImage: AssetImage(this.widget.userImage),
-                            backgroundColor: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(this.widget.userName,textAlign: TextAlign.center,maxLines: 2,overflow: TextOverflow.ellipsis,  style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black),)
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            GestureDetector(
-                onTap: () {widget.onPress();},
-                child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    child: Text(
-                      this.widget.postText,
-                      textAlign: TextAlign.right,maxLines: 4,overflow:TextOverflow.ellipsis,
-                      style: TextStyle(),
                     )
-                )
-            ),
-     /*       InkWell(
-    child: Text(this.textToDisplay),
-    onTap: () {
-
-    //if the text is not expanded we show it all
-    if (widget.postText.length > 25 && textToDisplay.length <= 25) {
-    setState(() {
-    textToDisplay = widget.postText;
-    });
-    }
-    //else if the text is already expanded we contract it back
-    else if (widget.postText.length > 25 && textToDisplay.length > 25) {
-    setState(() {
-    textToDisplay = widget.postText.substring(0,25)+"...";
-    });
-    }
-
-
-    },
-    )*/
-          ],
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              GestureDetector(
+                  onTap: () {
+                    widget.onPress();
+                  },
+                  child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 5),
+                      child: Text(
+                        this.widget.postText,
+                        textAlign: TextAlign.right,
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(),
+                      ))),
+              /*       InkWell(
+            child: Text(this.textToDisplay),
+            onTap: () {
+        
+            //if the text is not expanded we show it all
+            if (widget.postText.length > 25 && textToDisplay.length <= 25) {
+            setState(() {
+            textToDisplay = widget.postText;
+            });
+            }
+            //else if the text is already expanded we contract it back
+            else if (widget.postText.length > 25 && textToDisplay.length > 25) {
+            setState(() {
+            textToDisplay = widget.postText.substring(0,25)+"...";
+            });
+            }
+        
+        
+            },
+            )*/
+            ],
+          ),
         ),
       ),
     );

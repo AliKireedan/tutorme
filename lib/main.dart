@@ -10,6 +10,7 @@ import 'package:graduation_project/pages/Recover_Account.dart';
 import 'package:graduation_project/pages/Recover_Account_Code.dart';
 import 'package:graduation_project/pages/RegisterPage.dart';
 import 'package:graduation_project/pages/loginScreen.dart';
+import 'package:graduation_project/pages/CoursesList.dart';
 import 'package:graduation_project/pages/rulesPage.dart';
 import 'package:graduation_project/providers/userStateProvider.dart';
 import 'package:graduation_project/services/auth.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(fontFamily: 'Cairo'),
+        theme: ThemeData(fontFamily: 'Cairo', primaryColor: Color(0xff48A9C5)),
         // home: HomePage(),
         home: Wrapper(),
         routes: {
