@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation_project/defaults.dart';
 
 class PostWidget extends StatefulWidget {
   String postText;
@@ -44,7 +45,8 @@ class _PostWidgetState extends State<PostWidget> {
           padding: EdgeInsets.only(right: 30),
           margin: EdgeInsets.only(top: 10, bottom: 10),
           decoration: BoxDecoration(
-              border: Border(right: BorderSide(width: 2, color: Color(0xff48A9C5)))),
+              border: Border(
+                  right: BorderSide(width: 2, color: Color(0xff48A9C5)))),
           child: Column(
             children: [
               Container(
@@ -76,7 +78,8 @@ class _PostWidgetState extends State<PostWidget> {
                                   Row(children: [
                                     CircleAvatar(
                                       backgroundImage:
-                                          AssetImage(this.widget.userImage),
+                                          Image.network(this.widget.userImage)
+                                              .image,
                                       backgroundColor: Colors.white,
                                     ),
                                     SizedBox(
@@ -132,7 +135,7 @@ class _PostWidgetState extends State<PostWidget> {
               ),
               GestureDetector(
                   onTap: () {
-                    widget.onPress();
+                    // widget.onPress();
                   },
                   child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 5),
@@ -141,7 +144,7 @@ class _PostWidgetState extends State<PostWidget> {
                         textAlign: TextAlign.right,
                         maxLines: 4,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(),
+                        style: TextStyle(fontSize: 14, wordSpacing: 1, color: Color(HexColor('#808080'))),
                       ))),
               /*       InkWell(
             child: Text(this.textToDisplay),
