@@ -14,7 +14,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List images = ['appLogo.png'];
+  String appLogo = 'appLogo.png';
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +28,9 @@ class _MainScreenState extends State<MainScreen> {
           width: double.infinity,
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(children: [
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Image(image: AssetImage('Images/${images[0]}'), width: 120)
+            Row(mainAxisAlignment: MainAxisAlignment.center, 
+            children: [
+              Image(image: AssetImage('Images/${appLogo}'), width: 120)
             ]),
             SizedBox(
               height: 20,
@@ -89,7 +90,7 @@ class _MainScreenState extends State<MainScreen> {
                       children: snapshot.data!.docs.map((document) {
                         return ListTile(
                           onTap: () {
-                            Navigator.pushNamed(context, '/category/courses');
+                            Navigator.pushNamed(context, '/course');
                           },
                           title: Center(
                             child: Container(
@@ -98,9 +99,7 @@ class _MainScreenState extends State<MainScreen> {
                                 height: 20,
                               ),
                               PostWidget(
-                                  tags: [
-                                    document['category']['title']
-                                  ],
+                                  tags: [document['category']['title']],
                                   titleText: document['title'],
                                   timeOfCourse:
                                       DateTime.utc(1989, DateTime.november, 9),

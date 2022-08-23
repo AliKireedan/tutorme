@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/pages/Acount_Page.dart';
 import 'package:graduation_project/pages/CategoryPage.dart';
+import 'package:graduation_project/pages/CourseDetails.dart';
 import 'package:graduation_project/pages/CoursesList.dart';
 import 'package:graduation_project/pages/MainScreen.dart';
 import 'package:graduation_project/pages/MessagePage.dart';
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
           '/login': ((context) => LoginScreen()),
           '/rules': ((context) => RulesPage()),
           '/category/courses': ((context) => CourseList()),
+          '/course': ((context) => CourseDetails()),
         },
       ),
     );
