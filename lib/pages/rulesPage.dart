@@ -38,7 +38,7 @@ class RulesPage extends StatelessWidget {
                     child: Directionality(
                       textDirection: TextDirection.rtl,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
                             "1-",
@@ -51,7 +51,7 @@ class RulesPage extends StatelessWidget {
                             width: 10,
                           ),
                           Text(
-                            "شرط 1",
+                            "عدم انتحال اسم و بيانات شخصية اخرى",
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.grey[800],
@@ -69,7 +69,7 @@ class RulesPage extends StatelessWidget {
                     child: Directionality(
                       textDirection: TextDirection.rtl,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
                             "2-",
@@ -82,7 +82,7 @@ class RulesPage extends StatelessWidget {
                             width: 10,
                           ),
                           Text(
-                            "شرط 2",
+                            "عدم نشر محتوى زائف",
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.grey[800],
@@ -100,7 +100,7 @@ class RulesPage extends StatelessWidget {
                     child: Directionality(
                       textDirection: TextDirection.rtl,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
                             "3-",
@@ -113,7 +113,7 @@ class RulesPage extends StatelessWidget {
                             width: 10,
                           ),
                           Text(
-                            "شرط 3",
+                            "عدم إساءة استخدام التطبيق بأي شكل كان",
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.grey[800],
@@ -126,68 +126,7 @@ class RulesPage extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  Container(
-                    width: double.infinity,
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "4-",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[800],
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "شرط 4",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[800],
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "5-",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[800],
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "شرط 5",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[800],
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
+         
                 ],
               )
             ],
